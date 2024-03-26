@@ -1,0 +1,32 @@
+{
+   "schemaVersion": 1,
+   "name": "fedora",
+   "tag": "39",
+   "architecture": "amd64",
+   "fsLayers": [
+      {
+         "blobSum": "sha256:718a00fe32127ad01ddab9fc4b7c968ab2679c92c6385ac6865ae6e2523275e4"
+      }
+   ],
+   "history": [
+      {
+         "v1Compatibility": "{\"architecture\":\"amd64\",\"comment\":\"Created by Image Factory\",\"config\":{\"AttachStderr\":false,\"AttachStdin\":false,\"AttachStdout\":false,\"Cmd\":[\"/bin/bash\"],\"Domainname\":\"\",\"Entrypoint\":null,\"Env\":[\"DISTTAG=f39container\",\"FGC=f39\",\"container=oci\"],\"ExposedPorts\":null,\"Hostname\":\"\",\"Image\":\"\",\"Labels\":{\"name\":\"fedora\",\"license\":\"MIT\",\"vendor\":\"Fedora Project\",\"version\":\"39\"},\"MacAddress\":\"\",\"NetworkDisabled\":false,\"OnBuild\":null,\"OpenStdin\":false,\"StdinOnce\":false,\"Systemd\":false,\"Tty\":false,\"User\":\"\",\"VolumeDriver\":\"\",\"Volumes\":null,\"WorkingDir\":\"\"},\"container_config\":{\"AttachStderr\":false,\"AttachStdin\":false,\"AttachStdout\":false,\"Cmd\":null,\"Domainname\":\"\",\"Entrypoint\":null,\"Env\":null,\"ExposedPorts\":null,\"Hostname\":\"\",\"Image\":\"\",\"Labels\":null,\"MacAddress\":\"\",\"NetworkDisabled\":false,\"OnBuild\":null,\"OpenStdin\":false,\"StdinOnce\":false,\"Systemd\":false,\"Tty\":false,\"User\":\"\",\"VolumeDriver\":\"\",\"Volumes\":null,\"WorkingDir\":\"\"},\"created\":\"2023-11-28T07:50:13Z\",\"docker_version\":\"1.10.1\",\"id\":\"f8c0811fb7358a83f7ab464c084403eb5112b8026a32a00320ca64345719b234\",\"os\":\"linux\"}"
+      }
+   ],
+   "signatures": [
+      {
+         "header": {
+            "jwk": {
+               "crv": "P-256",
+               "kid": "R3GL:TZ4A:LG6Q:NFUW:AYJO:RROC:BIEB:E6VK:LVYQ:XNPR:3XRC:ARAR",
+               "kty": "EC",
+               "x": "SZjglnXYIdDIY6oPDiolZOwG0-zBoOHJgPhqh0j5yvI",
+               "y": "sgs179hPA9THMF1_Btvm9yijqlyW3MlnJk5Rl57IPH4"
+            },
+            "alg": "ES256"
+         },
+         "signature": "4QeBbyVuov43yI3b-jyJY8flaWih9umS4gADCnC1ufLmnwPq6yuCkoZP9IRxsktjLCY-FScLiT_hkM2aF2-7zA",
+         "protected": "eyJmb3JtYXRMZW5ndGgiOjE1MzAsImZvcm1hdFRhaWwiOiJDbjAiLCJ0aW1lIjoiMjAyNC0wMS0yN1QxOTowODoxNFoifQ"
+      }
+   ]
+}

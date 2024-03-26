@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pkgbox"
+version = "0.1.0"
+description = "manage package building as oci layers"
+authors = ["odra <me@lrossetti.com>"]
+license = "MIT"
+readme = "README.md"
+include = ['assets/*']
+
+[tool.poetry.scripts]
+pkgbox = "pkgbox.cli:main"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+pytest-sugar = "^0.9.7"
+requests-mock = "^1.11.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
