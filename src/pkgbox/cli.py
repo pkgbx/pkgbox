@@ -107,7 +107,6 @@ def build(source: SourceType) -> None:
     # click.echo(f'Fetching data from "{image_name}"...')
     # image.fetch(img, manifest, dest)
     # click.echo(f'Data fetched into {dest}')
-    raise errors.PBNotImplementedError()
 
 
 def main() -> None:
