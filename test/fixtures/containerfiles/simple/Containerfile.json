@@ -1,0 +1,73 @@
+{
+    "args": {},
+    "build_args": {},
+    "cmd": null,
+    "envs": {},
+    "from": "registry.fedoraproject.org/fedora:latest",
+    "instructions": {
+        "digest": "sha256:e26440fba1504b31bf9c2f330be499bcb17d73865c469fa316cddcb0421cbfa9",
+        "items": [
+            {
+                "digest": "sha256:34a33c394171eea5c097b4fad9073caaecf4214845f6b7a50d3102102205df31",
+                "name": "FROM",
+                "value": "registry.fedoraproject.org/fedora:latest"
+            },
+            {
+                "digest": "sha256:fd328491418f181f497cc5555cedafb4884cb061a85d60d5000813fad259778c",
+                "name": "LABEL",
+                "value": "org.pkgbox.package.name=\"simple\""
+            },
+            {
+                "digest": "sha256:27d1ec5cdcecf410f78d92612be78643909927ef4e5ad4f371aff6ce308fc1b3",
+                "name": "LABEL",
+                "value": "org.pkgbox.package.version=\"0.1.0\""
+            },
+            {
+                "digest": "sha256:dadefbad4cbec6c8c41c5395a24351fabc177c0ebdcd0569e894b82537b6b8d4",
+                "name": "LABEL",
+                "value": "org.pkgbox.package.release=\"1\""
+            },
+            {
+                "digest": "sha256:0d507b291e4bf36905619f19bbbc0b4d9a01d6bfd1eeaeab92e77b68a8ddac2b",
+                "name": "LABEL",
+                "value": "org.pkgbox.schema.version=\"1\""
+            },
+            {
+                "digest": "sha256:558f5c53739920a2293d951342ac363bce6464ed444cbfa9b5df8fbdda1f2c2e",
+                "name": "RUN",
+                "value": "dnf install -y gcc make"
+            },
+            {
+                "digest": "sha256:e771fd87f5f2f6ec9959a66ac096b10731efbe8c6a2757baa59a2b03f948787c",
+                "name": "COPY",
+                "value": "src /opt/app"
+            },
+            {
+                "digest": "sha256:e2e4bd5681ea3c11ea1d0975909d872191b05f3a5e2d3516f33dd184440f29d2",
+                "name": "WORKDIR",
+                "value": "/opt/app"
+            },
+            {
+                "digest": "sha256:ecdf9faf157f1e0c9acaa11930d91936ca7c35eec9471414423afdf7fd6b989f",
+                "name": "RUN",
+                "value": "make build"
+            },
+            {
+                "digest": "sha256:2f6bf27333d9203a73ff8253478de0ce0df8893dcecec9f30b49d6324c5abd54",
+                "name": "COMMENT",
+                "value": "@org.pkgbox.artifact=true"
+            },
+            {
+                "digest": "sha256:11945431a2460d395f856bfcb80337a60bd6f1d98ea02e563f9ffa155eda2d0d",
+                "name": "RUN",
+                "value": "make install"
+            }
+        ]
+    },
+    "labels": {
+        "org.pkgbox.package.name": "simple",
+        "org.pkgbox.package.release": "1",
+        "org.pkgbox.package.version": "0.1.0",
+        "org.pkgbox.schema.version": "1"
+    }
+}

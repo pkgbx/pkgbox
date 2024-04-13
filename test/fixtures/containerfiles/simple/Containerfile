@@ -1,0 +1,19 @@
+FROM registry.fedoraproject.org/fedora:latest
+
+LABEL org.pkgbox.package.name="simple"
+LABEL org.pkgbox.package.version="0.1.0"
+LABEL org.pkgbox.package.release="1"
+LABEL org.pkgbox.schema.version="1"
+
+RUN dnf install -y \
+gcc \
+make
+
+COPY src /opt/app
+
+WORKDIR /opt/app
+
+RUN make build
+
+# @org.pkgbox.artifact=true
+RUN make install
