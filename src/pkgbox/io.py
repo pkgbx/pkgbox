@@ -3,6 +3,8 @@ IO library.
 """
 import typing
 
+from . import errors
+
 import requests
 
 
@@ -22,8 +24,11 @@ class FileReader(Reader):
         """
         Return the file content of a given path.
         """
-        with open(self.path, 'r') as f:
-            return f.read()
+        try:
+            with open(self.path, 'r') as f:
+                return f.read()
+        except OSError as e:
+            raise errors.PBError(str(e), e.errno)
 
 
 class HttpReader(Reader):
@@ -32,7 +37,11 @@ class HttpReader(Reader):
         Return the content of a given http(s) url using a
         GET request.
         """
-        res = requests.get(f'{self.scheme}://{self.path}')
+        try:
+            res = requests.get(f'{self.scheme}://{self.path}')
+            res.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            raise errors.PBError(str(e), e.response.status_code)
 
         return res.text
 
