@@ -53,3 +53,14 @@ class PBNotImplementedError(PBError):
         Create a new object instance of this error.
         """
         super(PBNotImplementedError, self).__init__('Not Implemented', errno.ENOSYS)
+
+
+class PBRuntimeError(PBError):
+    """
+    Runtime error to be raised in runtime implementations.
+    """
+    def __init__(self, message: str) -> None:
+        """
+        Create a new instance of this error.
+        """
+        super().__init__(message, errno.ENOTRECOVERABLE)

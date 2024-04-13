@@ -10,7 +10,7 @@ from typing import Any
 
 import click
 
-from . import containerfile, errors, env, image, io
+from . import containerfile, errors, env, image, io, runtime
 
 
 class SourceType(click.ParamType):
@@ -31,7 +31,7 @@ class SourceType(click.ParamType):
 
         "file://" is assumed if no scheme is provided.
         """
-        pattern = re.compile('([a-zA-Z]+)\:\/\/(.*)')
+        pattern = re.compile('([a-zA-Z]+)//(.*)')
         m = pattern.match(value)
         if m:
             scheme, value = m.groups()
