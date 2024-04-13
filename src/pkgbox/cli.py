@@ -2,13 +2,43 @@
 The cli module is used to run the pkgbox main cli.
 """
 import os
+import re
 import sys
 import shutil
 import pathlib
+from typing import Any
 
 import click
 
-from . import errors, env, image
+from . import containerfile, errors, env, image, io
+
+
+class SourceType(click.ParamType):
+    """
+    Source type to guess the source uri
+    """
+    name: str = 'SourceType'
+
+    def convert(self, value: Any, param: click.Parameter, ctx: click.Context) -> io.Reader:
+        """
+        Converts a source string, such as file:///tmp/Containerfile into reader
+        object.
+
+        Supported schemes:
+
+        - file://
+        - http(s)://
+
+        "file://" is assumed if no scheme is provided.
+        """
+        pattern = re.compile('([a-zA-Z]+)\:\/\/(.*)')
+        m = pattern.match(value)
+        if m:
+            scheme, value = m.groups()
+        else:
+            scheme, value = ('file', value) 
+
+        return io.build_reader(scheme, value)
 
 
 @click.group
@@ -58,13 +88,18 @@ def info() -> None:
 
 
 @cli.command
-@click.option('-i', '--image', 'image_name', default='registry.fedoraproject.org/fedora:39') 
-def build(image_name: str) -> None:
+@click.argument('source', type=SourceType())
+def build(source: SourceType) -> None:
     """
     Handles the `pkgbox build` command.
     """
-    # paths = env.get_pkgbox_dirs()
-    # data_dir = paths['data_dir']
+    paths = env.get_pkgbox_dirs()
+    data_dir = paths['data_dir']
+
+    # load containerfile from source
+    c = containerfile.from_reader(source)
+    click.echo(containerfile.as_json(c, pretty=True))
+    
     # img = image.from_str(image_name)
     # manifest = image.info(img)
     # dest = pathlib.Path(f'{data_dir}/oci-layers')

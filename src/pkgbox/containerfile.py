@@ -10,6 +10,8 @@ from typing import Dict, Any
 import canonicaljson
 from dockerfile_parse import DockerfileParser, util
 
+from . import io
+
 
 class ContainerfileParser(DockerfileParser):
     """
@@ -51,6 +53,13 @@ def from_filepath(path: pathlib.Path) -> ContainerfileParser:
     with open(path.resolve(), 'r') as f:
         parser.content = f.read()
 
+    return parser
+
+
+def from_reader(reader: io.Reader) -> ContainerfileParser:
+    parser = ContainerfileParser()
+    parser.content = reader.read()
+    
     return parser
 
 
