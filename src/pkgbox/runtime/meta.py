@@ -58,6 +58,15 @@ class Runtime(Protocol):
     A "Runtime" implementation will implement
     the steps and phases of a build runtime.
     """
+    def preflight_check(self) -> None:
+        """
+        Run preflight checks to ensure everything is in place,
+        environment wise.
+
+        Implementations should raise `pkgbox.errors.PBRuntimeError` if not.
+        """
+        pass
+
     def prepare_build(self, build_id: str) -> None:
         """
         Prepares a build to be run, create files, pull

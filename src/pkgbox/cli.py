@@ -89,9 +89,12 @@ def info() -> None:
 
 @cli.command
 @click.argument('source', type=SourceType())
-def build(source: SourceType) -> None:
+@click.option('-r', '--runtime', 'runtime_name', default='crun', help='build runtime to use')
+def build(source: SourceType, runtime_name: str) -> None:
     """
-    Handles the `pkgbox build` command.
+    Build a new package from a given source.
+
+    Runtime defaults to "crun" if none is provided.
     """
     paths = env.get_pkgbox_dirs()
     data_dir = paths['data_dir']
@@ -99,6 +102,11 @@ def build(source: SourceType) -> None:
     # load containerfile from source
     c = containerfile.from_reader(source)
     click.echo(containerfile.as_json(c, pretty=True))
+
+    # runtime setup
+    r = runtime.build(runtime_name)
+    r.preflight_check()
+    r.prepare_build(containerfile.as_dict(c))
     
     # img = image.from_str(image_name)
     # manifest = image.info(img)
